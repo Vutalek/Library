@@ -1,0 +1,6 @@
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\obj\Debug\BaumansGateLibrary.csproj.AssemblyReference.cache
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\obj\Debug\BaumansGateLibrary.csproj.CoreCompileInputs.cache
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\bin\Debug\BaumansGateLibrary.dll
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\bin\Debug\BaumansGateLibrary.pdb
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\obj\Debug\BaumansGateLibrary.dll
+C:\Users\HONOR\OneDrive\Рабочий стол\Reality\Информатика\лабы 4 сем\BaumansGateLibrary\obj\Debug\BaumansGateLibrary.pdb
