@@ -13,6 +13,7 @@ namespace BaumansGateLibrary.Buildings
         public static AcademyUI MainInterface;
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Level { get; set; }
         public List<Resource> PriceToBuild { get; set; }
         public enum AcademyActions
         {
@@ -27,6 +28,7 @@ namespace BaumansGateLibrary.Buildings
             PriceToBuild = new List<Resource>();
             PriceToBuild.Add(new Resource(Resource.Types.Wood, 100));
             PriceToBuild.Add(new Resource(Resource.Types.Stone, 500));
+            Level = 1;
         }
         public void BuildingEvent(Player user)
         {
@@ -97,9 +99,9 @@ namespace BaumansGateLibrary.Buildings
                     PurchasedUnit = new Riders(2, shortName, new Position());
                     break;
             }
-            if (PurchasedUnit.GetPrice() <= user.GetMoney())
+            if (PurchasedUnit.GetPrice()-3*Level <= user.GetMoney())
             {
-                user.ChangeMoney(PurchasedUnit.GetPrice(), Player.HowChange.Decrease);
+                user.ChangeMoney(PurchasedUnit.GetPrice()-3*Level, Player.HowChange.Decrease);
                 user.GetUnits().Add(shortName, PurchasedUnit);
                 return true;
             }

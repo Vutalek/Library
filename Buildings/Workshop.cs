@@ -14,6 +14,7 @@ namespace BaumansGateLibrary.Buildings
         public static WorkshopUI MainInterface;
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Level {  get; set; }
         public List<Resource> PriceToBuild { get; set; }
         public int Cycles;
         public enum WorkshopActions
@@ -29,6 +30,7 @@ namespace BaumansGateLibrary.Buildings
             PriceToBuild.Add(new Resource(Resource.Types.Wood, 100));
             PriceToBuild.Add(new Resource(Resource.Types.Stone, 500));
             Cycles = 0;
+            Level = 1;
         }
         public void BuildingEvent(Player user)
         {
@@ -44,7 +46,7 @@ namespace BaumansGateLibrary.Buildings
                             MainInterface.HarvestFail();
                         else
                         {
-                            user.ChangeMoney(Cycles * 100, Player.HowChange.Increase);
+                            user.ChangeMoney(Cycles * 100 * Level, Player.HowChange.Increase);
                             ClearCycles();
                             MainInterface.HarvestComplete();
                         }
@@ -62,6 +64,10 @@ namespace BaumansGateLibrary.Buildings
         public void ClearCycles()
         {
             Cycles = 0;
+        }
+        public void Upgrade()
+        {
+            Level++;
         }
         public City.BuildingTypes GetBuildingType()
         {

@@ -10,6 +10,7 @@ namespace BaumansGateLibrary.Buildings
     {
         string Name { get; set; }
         string Description { get; set; }
+        int Level { get; set; }
         List<Resource> PriceToBuild { get; set; }
         void BuildingEvent(Player user);
         City.BuildingTypes GetBuildingType();

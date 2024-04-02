@@ -13,6 +13,7 @@ namespace BaumansGateLibrary.Buildings
         public static TawernUI MainInterface;
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Level { get; set; }
         public List<Resource> PriceToBuild { get; set; }
         public enum TawernActions
         {
@@ -26,6 +27,7 @@ namespace BaumansGateLibrary.Buildings
             PriceToBuild = new List<Resource>();
             PriceToBuild.Add(new Resource(Resource.Types.Wood, 100));
             PriceToBuild.Add(new Resource(Resource.Types.Stone, 500));
+            Level = 1;
         }
         public void BuildingEvent(Player user)
         {
@@ -37,7 +39,7 @@ namespace BaumansGateLibrary.Buildings
                 switch (action)
                 {
                     case TawernActions.Party:
-                        if (user.GetMoney() >= 10 * user.GetUnits().Count)
+                        if (user.GetMoney() >= (10 * user.GetUnits().Count - 2*Level))
                         {
                             foreach (char U in user.GetUnits().Keys)
                                 user.GetUnits()[U].GetBuffList().Add(new GoodMood());
@@ -51,6 +53,10 @@ namespace BaumansGateLibrary.Buildings
                         break;
                 }
             }
+        }
+        public void Upgrade()
+        {
+            Level++;
         }
         public City.BuildingTypes GetBuildingType()
         {

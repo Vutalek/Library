@@ -13,6 +13,7 @@ namespace BaumansGateLibrary.Buildings
         public static DoctorHouseUI MainInterface;
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Level { get; set; }
         public List<Resource> PriceToBuild { get; set; }
         public enum DoctorHouseActions
         {
@@ -27,6 +28,7 @@ namespace BaumansGateLibrary.Buildings
             PriceToBuild = new List<Resource>();
             PriceToBuild.Add(new Resource(Resource.Types.Wood, 10));
             PriceToBuild.Add(new Resource(Resource.Types.Stone, 400));
+            Level = 1;
         }   
         public void BuildingEvent(Player user)
         {
@@ -73,7 +75,7 @@ namespace BaumansGateLibrary.Buildings
                 Status[1] = false;
                 return Status;
             }
-            else if (user.GetMoney() < 10)
+            else if (user.GetMoney() < 10-Level)
             {
                 Status[0] = false;
                 Status[1] = true;
@@ -82,9 +84,13 @@ namespace BaumansGateLibrary.Buildings
             else
             {
                 temp.IncreaseMaxHealth(5);
-                user.ChangeMoney(10, Player.HowChange.Decrease);
+                user.ChangeMoney(10-Level, Player.HowChange.Decrease);
                 return Status;
             }
+        }
+        public void Upgrade()
+        {
+            Level++;
         }
         public City.BuildingTypes GetBuildingType()
         {

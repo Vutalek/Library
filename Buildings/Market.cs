@@ -13,6 +13,7 @@ namespace BaumansGateLibrary.Buildings
         public static MarketUI MainInterface;
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Level { get; set; }
         public List<Resource> PriceToBuild { get; set; }
         public enum MarketActions
         {
@@ -27,6 +28,7 @@ namespace BaumansGateLibrary.Buildings
             PriceToBuild = new List<Resource>();
             PriceToBuild.Add(new Resource(Resource.Types.Wood, 100));
             PriceToBuild.Add(new Resource(Resource.Types.Stone, 500));
+            Level = 1;
         }
         public void BuildingEvent(Player user)
         {
@@ -68,9 +70,9 @@ namespace BaumansGateLibrary.Buildings
                     PurchasedResource = new Resource(Resource.Types.Stone, 20);
                     break;
             }
-            if (PurchasedResource.GetCost() <= user.GetMoney())
+            if (PurchasedResource.GetCost()-5*Level <= user.GetMoney())
             {
-                user.ChangeMoney(PurchasedResource.GetCost(), Player.HowChange.Decrease);
+                user.ChangeMoney(PurchasedResource.GetCost()-5*Level, Player.HowChange.Decrease);
                 foreach(Resource R in user.GetResourcesInPossession())
                 {
                     if (R.GetResourceTypeID() == PurchasedResource.GetResourceTypeID())
@@ -96,7 +98,7 @@ namespace BaumansGateLibrary.Buildings
                     break;
                 }
             }
-            user.ChangeMoney(Chosen.GetCost(), Player.HowChange.Increase);
+            user.ChangeMoney(Chosen.GetCost()-5*Level, Player.HowChange.Increase);
             user.GetResourcesInPossession().Remove(Chosen);
         }
         public City.BuildingTypes GetBuildingType()
