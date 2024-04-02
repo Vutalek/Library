@@ -1,4 +1,5 @@
-﻿using BaumansGateLibrary.Warriors;
+﻿using BaumansGateLibrary.Battle;
+using BaumansGateLibrary.Warriors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,13 @@ namespace BaumansGateLibrary.Buffs
                 foreach(Buff B in units[U].GetBuffList())
                     B.ProcessBuff(units[U]);
             }
+        }
+        public static void UnBuff(Unit unit, Buff buff)
+        {
+            int index = unit.GetBuffList().IndexOf(buff);
+            buff.ProcessUnBuff(unit);
+            unit.GetBuffList().RemoveAt(index);
+            GameLog.AddLine("Бафф " + buff.GetBuffName() + " прекратил своё действие.");
         }
         public static void ClearBuffs(Dictionary<char, Unit> units)
         {

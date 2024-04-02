@@ -21,7 +21,8 @@ namespace BaumansGateLibrary
             Forgery,
             Market,
             Tawern,
-            Workshop
+            Workshop,
+            AnimalShop
         }
         List<IBuilding> Buildings = new List<IBuilding>();
         public City()
@@ -76,6 +77,9 @@ namespace BaumansGateLibrary
                             case BuildingTypes.Workshop:
                                 Builded = new Workshop();
                                 break;
+                            case BuildingTypes.AnimalShop:
+                                 Builded = new AnimalShop();
+                                 break;
                         }
                         int CanBuild = 0;
                         foreach (Resource Need in Builded.PriceToBuild)

@@ -54,9 +54,9 @@ namespace BaumansGateLibrary.Battle
             foreach(char U in Units.Keys)
             {
                 bool flag = true;
-                BattleInterface.ShowGrid(G);
                 while(flag)
                 {
+                    BattleInterface.ShowGrid(G);
                     Position Next = BattleInterface.ChoosePosition(U);
                     bool FlagUnique = true;
                     foreach (char U2 in Units.Keys)
@@ -70,6 +70,31 @@ namespace BaumansGateLibrary.Battle
                     }
                     else
                         continue;
+                }
+                flag = true;
+                List<Animal> LiveAnimal = new List<Animal>();
+                foreach(Animal A in Units[U].GetAnimalList())
+                    if (!A.Dead)
+                        LiveAnimal.Add(A);
+                while (flag)
+                {
+                    if (LiveAnimal.Count == 0)
+                        flag = false;
+                    Animal Next = BattleInterface.ChooseAnimal(User, U);
+                    Units[U].SetActiveAnimal(Next);
+                    switch(Next.GetBuffType())
+                    {
+                        case Buff.Types.JaguarBuff:
+                            Units[U].GetBuffList().Add(new JaguarBuff());
+                            break;
+                        case Buff.Types.HawkBuff:
+                            Units[U].GetBuffList().Add(new HawkBuff());
+                            break;
+                        case Buff.Types.BearBuff:
+                            Units[U].GetBuffList().Add(new BearBuff());
+                            break;
+                    }
+                    flag = false;
                 }
             }
         }
@@ -181,7 +206,30 @@ namespace BaumansGateLibrary.Battle
                 }
             }
             if (ChosenCanAttack)
-                AttackProcessor.Attack(Chosen, Prey, MainLayout);
+            {
+                int choi = ran.Next(0, 2);
+                switch(choi)
+                {
+                    case 0:
+                        AttackProcessor.Attack(Chosen, Prey, MainLayout);
+                        break;
+                    case 1:
+                        Prey.GetActiveAnimal().Dead = true;
+                        int RemoveIndex = 0;
+                        for(int i = 0; i < Prey.GetBuffList().Count; i++)
+                        {
+                            if (Prey.GetBuffList()[i].GetBuffID() == Prey.GetActiveAnimal().GetBuffType())
+                            {
+                                RemoveIndex = i;
+                                break;
+                            }
+                        }
+                        GameLog.AddLine(Chosen.GetShortName() + " убил " + Prey.GetActiveAnimal().Name + " юнита " + Prey.GetShortName() + ".");
+                        Prey.GetBuffList()[RemoveIndex].ProcessUnBuff(Prey);
+                        Prey.GetBuffList().RemoveAt(RemoveIndex);
+                        break;
+                }
+            }
             else
                 for (int i = Chosen.GetMaximumDistanceOfMove(); i > 0; i--)
                     if (Chosen.Move(new Position(Chosen.GetCurrentPosition().xCoordinate, Chosen.GetCurrentPosition().yCoordinate + i), MainLayout))

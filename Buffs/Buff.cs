@@ -10,9 +10,13 @@ namespace BaumansGateLibrary.Buffs
     [Serializable]
     public class Buff
     {
+        protected string BuffName;
         public enum Types
         {
-            GoodMood
+            GoodMood,
+            JaguarBuff,
+            HawkBuff,
+            BearBuff
         }
         protected int TimeToLive;
         protected bool TimeIsAllGame;
@@ -23,7 +27,9 @@ namespace BaumansGateLibrary.Buffs
         public Types GetBuffID() {  return BuffID; }
         public bool GetTimeIsAllGame() {  return TimeIsAllGame; }
         public bool GetIsOn() {  return IsOn; }
+        public string GetBuffName() { return BuffName; }
         public void BuffDecrement() { TimeToLive--; }
         public virtual void ProcessBuff(Unit U) { }
+        public virtual void ProcessUnBuff(Unit U) { }
     }
 }

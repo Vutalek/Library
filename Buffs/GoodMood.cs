@@ -12,6 +12,7 @@ namespace BaumansGateLibrary.Buffs
     {
         public GoodMood() 
         {
+            BuffName = "Хорошее настроение";
             BuffID = Types.GoodMood;
             TimeToLive = 1;
             TimeIsAllGame = true;
@@ -29,8 +30,12 @@ namespace BaumansGateLibrary.Buffs
             if (TimeToLive == 0)
             {
                 IsOn = false;
-                U.ChangeMaximumDistanceOfMove(2, Unit.HowChange.Decrease);
+                ProcessUnBuff(U);
             }
+        }
+        public override void ProcessUnBuff(Unit U)
+        {
+            U.ChangeMaximumDistanceOfMove(2, Unit.HowChange.Decrease);
         }
     }
 }

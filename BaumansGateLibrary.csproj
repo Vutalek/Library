@@ -41,10 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buffs\Animal.cs" />
+    <Compile Include="Buffs\Bear.cs" />
+    <Compile Include="Buffs\BearBuff.cs" />
     <Compile Include="Buffs\Buff.cs" />
     <Compile Include="Buffs\BuffProcessor.cs" />
     <Compile Include="Buffs\GoodMood.cs" />
+    <Compile Include="Buffs\Hawk.cs" />
+    <Compile Include="Buffs\HawkBuff.cs" />
+    <Compile Include="Buffs\Jaguar.cs" />
+    <Compile Include="Buffs\JaguarBuff.cs" />
     <Compile Include="Buildings\AcademyUI.cs" />
+    <Compile Include="Buildings\AnimalShop.cs" />
+    <Compile Include="Buildings\AnimalShopUI.cs" />
     <Compile Include="Buildings\Arsenal.cs" />
     <Compile Include="Buildings\ArsenalUI.cs" />
     <Compile Include="Buildings\Forgery.cs" />

@@ -25,6 +25,8 @@ namespace BaumansGateLibrary.Warriors
         protected float HillPenalty;
         protected float TreePenalty;
         protected List<Buff> BuffList;
+        protected List<Animal> AnimalList;
+        protected Animal ActiveAnimal;
         public enum HowChange
         {
             Decrease,
@@ -54,7 +56,12 @@ namespace BaumansGateLibrary.Warriors
         public char GetShortName() { return ShortName; }
         public int GetMaximumDistanceOfMove() { return MaximumDistanceOfMove; }
         public int GetPrice() { return Price; }
+        public float GetTreePenalty() { return TreePenalty; }
+        public float GetSwampPenalty() { return SwampPenalty; }
+        public float GetHillPenalty() { return HillPenalty; }
         public List<Buff> GetBuffList() { return BuffList; }
+        public List<Animal> GetAnimalList() { return AnimalList; }
+        public Animal GetActiveAnimal() { return ActiveAnimal; }
         public void ChangeMaximumDistanceOfMove(int amount, HowChange H)
         {
             switch(H)
@@ -96,6 +103,10 @@ namespace BaumansGateLibrary.Warriors
         {
             CurrentPosition = pos;
         }
+        public void SetTreePenalty(float p) { TreePenalty = p; }
+        public void SetSwampPenalty(float p) { SwampPenalty = p; }
+        public void SetHillPenalty(float p) { HillPenalty = p; }
+        public void SetActiveAnimal(Animal A) { ActiveAnimal = A; }
         public bool CanMove(Position NextPosition, Grid MainLayout)
         {
             if (CurrentHealth == 0)

@@ -38,5 +38,9 @@ namespace BaumansGateLibrary.Warriors
             if (AverageAttack < 15)
                 AverageAttack += 1;
         }
+        public void ChangeAverage(int amount)
+        {
+            AverageAttack += amount;
+        }
     }
 }

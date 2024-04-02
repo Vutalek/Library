@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BaumansGateLibrary.Warriors;
+using BaumansGateLibrary.Buffs;
 
 namespace BaumansGateLibrary.Battle
 {
@@ -14,6 +15,7 @@ namespace BaumansGateLibrary.Battle
         Unit ChooseUnit(Dictionary<char, Unit> Units, bool ShowAdditionInfo = true);
         Position ChoosePosition(Unit U, Grid MainLayout);
         Position ChoosePosition(char U);
+        Animal ChooseAnimal(Player user, char U);
         void ShowMenu();
         Game.Actions ChooseAction();
         void ShowVictoryScreen();
